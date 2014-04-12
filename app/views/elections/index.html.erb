@@ -3,6 +3,6 @@
 </div>
 <ul class="list-unstyled">
   <% @elections.each do |election| %>
-    <li><%= link_to election.name, election_path(election) %></li>
+    <li><%= link_to election.title, election_path(election) %></li>
   <% end %>
 </ul>

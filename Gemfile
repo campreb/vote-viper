@@ -20,12 +20,22 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-
-gem 'spring',        group: :development
-
 gem 'devise'
 
+gem 'cancan'
+
 gem 'bootstrap-sass'
+gem "font-awesome-rails"
+
+gem 'seed-fu', github: 'igas/seed-fu', branch: 'rails41'
+
+gem 'nested_form'
+
+group :development do
+  gem 'spring'
+  gem 'better_errors'
+  gem "binding_of_caller"
+end
 
 group :development, :test do
   gem "minitest"

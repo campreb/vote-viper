@@ -2,18 +2,12 @@ require 'spec_helper'
 
 describe ElectionsController do
   render_views
-
-  let!(:election){ FactoryGirl.create(:election) }
-
-  describe "#index" do
-    before{ get 'index' }
-    it{ should respond_with :success }
-    specify{ assigns(:elections).should include(election)}
-  end
+  let!(:responder){ FactoryGirl.create(:responder) }
 
   describe '#show' do
-    before{ get :show, id: election.id }
+    before{ get :show, key: responder.private_key }
     it{ should respond_with :success }
-    specify{ assigns(:election).should eq(election)}
+    specify{ assigns(:responder).should eq(responder)         }
+    specify{ assigns(:election).should eq(responder.election) }
   end
 end

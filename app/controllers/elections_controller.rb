@@ -1,10 +1,7 @@
 class ElectionsController < ApplicationController
-  before_filter :authenticate_user!
-  def index
-    @elections = Election.all
-  end
-
   def show
-    @election = Election.find(params[:id])
+    @responder = current_responder
+    @election = @responder.election
+    # @votes = @election.questions.map{|q| @responder.votes.where(question_id: q.id).first_or_initialize}
   end
 end

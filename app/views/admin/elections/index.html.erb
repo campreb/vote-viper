@@ -1,0 +1,26 @@
+<div class="page-header">
+  <ul class="list-inline pull-right">
+    <li>
+      <%= link_to fontawesome('plus-circle', "New Election"), new_admin_election_path, class: "btn btn-primary" %>
+    </li>
+  </ul>
+  <h1>Election</h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @elections.each do |election| %>
+    <tr>
+      <td><%= link_to election.title, admin_election_path(election) %></td>
+      <td class='text-right'><%= link_to fontawesome('pencil',"edit"), edit_admin_election_path(election), class: "btn btn-xs btn-default" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

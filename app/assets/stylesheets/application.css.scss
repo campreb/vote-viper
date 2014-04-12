@@ -16,4 +16,10 @@
  *= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
 
+
+$brand-primary: #5299D3;
+$navbar-default-bg: $brand-primary;
+$navbar-default-color: #fff;
+$navbar-default-link-color: #fff;
 @import 'bootstrap';
+@import "font-awesome";

@@ -1,0 +1,42 @@
+<%= nested_form_for [:admin, @election] do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <h5>Questions</h5>
+  <%= f.fields_for :questions do |question_form| %>
+    <div class="well well-sm">
+      <%= question_form.link_to_remove "&times;".html_safe, class:"close", title: "Remove this question" %>
+      <div class="form-group">
+        <%= question_form.label :title %>
+        <%= question_form.text_field :title, class: "form-control" %>
+      </div>
+      <h6>Options:</h6>
+      <ul>
+        <%= question_form.fields_for :options do |option_form| %>
+        <li>
+          <%= option_form.link_to_remove "&times;".html_safe, class:"close", title: "Remove this option" %>
+          <div class="form-group">
+            <%= option_form.text_field :name %>
+          </div>
+        </li>
+        <% end %>
+        <%= question_form.link_to_add "Add an option", :options, class: "btn btn-success btn-xs" %>
+      </ul>
+
+    </div>
+  <% end %>
+  <p><%= f.link_to_add "Add a question", :questions, class: "btn btn-success btn-sm" %></p>
+
+  <hr>
+  <div class="form-group">
+    <%= f.submit "Save", data: {disable_with: "Saving..." }, class: "btn btn-primary" %>
+  </div>
+
+<% end %>

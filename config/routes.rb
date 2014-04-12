@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  root to: "elections#index"
-  resources :elections, only: [:show]
+  namespace :admin do
+    resources :elections
+  end
+
+  root to: "admin/elections#index"
+
+  get "election" => "elections#show"
 
   devise_for :users
 end
