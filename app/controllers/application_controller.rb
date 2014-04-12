@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   private
 
   def current_responder
-    private_key = session[:responder_key] || params[:key]
-    Responder.where(private_key: private_key).first if private_key.present?
+    session[:responder_key] ||= params[:key]
+    Responder.where(private_key: session[:responder_key]).first if session[:responder_key].present?
   end
 
 end
