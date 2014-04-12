@@ -1,9 +1,8 @@
 <div class="page-header">
   <ul class="list-inline pull-right">
-    <li><%= link_to "Edit", edit_admin_election_path(@election), class: 'btn btn-default' %></li>
+    <li><%= link_to fontawesome('pencil',"Edit"), edit_admin_election_path(@election), class: 'btn btn-default' %></li>
   </ul>
   <h1><%= @election.title %></h1>
-
 </div>
 
 <%= simple_format @election.description %>

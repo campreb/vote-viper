@@ -4,13 +4,14 @@
       <%= link_to fontawesome('plus-circle', "New Election"), new_admin_election_path, class: "btn btn-primary" %>
     </li>
   </ul>
-  <h1>Election</h1>
+  <h1>Elections</h1>
 </div>
 
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
+      <th>Number of responders</th>
       <th></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
     <% @elections.each do |election| %>
     <tr>
       <td><%= link_to election.title, admin_election_path(election) %></td>
+      <td><%= election.responders.count %></td>
       <td class='text-right'><%= link_to fontawesome('pencil',"edit"), edit_admin_election_path(election), class: "btn btn-xs btn-default" %></td>
     </tr>
     <% end %>

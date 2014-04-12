@@ -9,21 +9,29 @@
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <%= link_to "UN Votes", root_path, class: "navbar-brand" %>
+        <strong><%= link_to "Vote Viper", root_path, class: "navbar-brand" %></strong>
       </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Elections", admin_elections_path %></li>
+      </ul>
       <% if user_signed_in? %>
-      <p class="navbar-text navbar-right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+      <p class="navbar-text navbar-right"><%= link_to "Logout", destroy_user_session_path, class:"navbar-link", method: :delete %></p>
       <% end %>
     </div>
   </nav>
   <div class="container">
     <% if notice %>
-      <div class="alert alert-success"><%= notice %></div>
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= notice %>
+      </div>
     <% end %>
     <% if alert %>
-      <div class="alert alert-danger"><%= alert %></div>
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= alert %>
+      </div>
     <% end %>
     <%= yield %>
   </div>
