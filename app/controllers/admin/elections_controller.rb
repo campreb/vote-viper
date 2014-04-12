@@ -42,7 +42,7 @@ class Admin::ElectionsController < Admin::BaseController
 
   def election_params
     params.require(:election).permit(
-      :title, :description,
+      :title, :description, :opens_at, :closes_at,
       questions_attributes:[
         :id, :title, :description, :sort_order, :_destroy,
         options_attributes:[:id, :name, :_destroy]

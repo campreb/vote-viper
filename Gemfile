@@ -31,6 +31,8 @@ gem 'seed-fu', github: 'igas/seed-fu', branch: 'rails41'
 
 gem 'nested_form'
 
+gem 'chronic'
+
 group :development do
   gem 'spring'
   gem 'better_errors'

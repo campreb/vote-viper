@@ -10,10 +10,10 @@
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <strong><%= link_to "Vote Viper", root_path, class: "navbar-brand" %></strong>
+        <span class="navbar-brand"><strong>Vote Viper</strong> | Admin</span>
       </div>
       <ul class="nav navbar-nav">
-        <li><%= link_to "Elections", admin_elections_path %></li>
+        <li class='active'><%= link_to "Elections", admin_elections_path %></li>
       </ul>
       <% if user_signed_in? %>
       <p class="navbar-text navbar-right"><%= link_to "Logout", destroy_user_session_path, class:"navbar-link", method: :delete %></p>

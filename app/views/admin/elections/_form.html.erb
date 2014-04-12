@@ -12,6 +12,21 @@
       <%= f.text_area :description, class: "form-control", rows: 5 %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :opens_at, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :opens_at, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :closes_at, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :closes_at, class: "form-control" %>
+    </div>
+  </div>
+
   <div class="form-group">
     <label class='col-sm-2 control-label'>Questions</label>
     <div class="col-sm-8">

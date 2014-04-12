@@ -6,6 +6,8 @@
 </div>
 
 <%= simple_format @election.description %>
+<strong>Opens At:</strong> <%= @election.opens_at.to_s(:long) %> <br>
+<strong>Closes At:</strong> <%= @election.closes_at.to_s(:long) %>
 <hr>
 <h3>Questions:</h3>
 <ul>
