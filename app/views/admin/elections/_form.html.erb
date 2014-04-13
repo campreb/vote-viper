@@ -30,7 +30,7 @@
   <div class="form-group">
     <label class='col-sm-2 control-label'>Questions</label>
     <div class="col-sm-8">
-      <%= f.fields_for :questions do |question_form| %>
+      <%= f.fields_for :questions, @election.questions.order(:sort_order) do |question_form| %>
         <div class="well well-sm">
           <%= question_form.link_to_remove "&times;".html_safe, class:"close", title: "Remove this question" %>
           <div class="form-group">

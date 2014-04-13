@@ -1,22 +1,23 @@
-<div class="page-header">
-  <ul class="list-inline pull-right">
-    <li><%= link_to fontawesome('pencil',"Edit"), edit_admin_election_path(@election), class: 'btn btn-default' %></li>
-  </ul>
-  <h1><%= @election.title %></h1>
-</div>
-
-<%= simple_format @election.description %>
-<strong>Opens At:</strong> <%= @election.opens_at.localtime.to_s(:long) %> <br>
-<strong>Closes At:</strong> <%= @election.closes_at.localtime.to_s(:long) %>
-<hr>
-<h3>Questions:</h3>
-<ul>
-  <% @election.questions.each do |question| %>
-    <li><%= question.title %></li>
-    <ul>
-      <% question.options.each do |option| %>
-        <li><%= option.name %></li>
-      <% end %>
+<%= election_sidebar do %>
+  <div class="page-header">
+    <ul class="list-inline pull-right">
+      <li><%= link_to fontawesome('pencil',"Edit"), edit_admin_election_path(@election), class: 'btn btn-default' %></li>
     </ul>
-  <% end %>
-</ul>
+    <h1><%= @election.title %></h1>
+  </div>
+  <%= simple_format @election.description %>
+  <strong>Opens At:</strong> <%= @election.opens_at.localtime.to_s(:long) rescue '<em>not set</em>'.html_safe %> <br>
+  <strong>Closes At:</strong> <%= @election.closes_at.localtime.to_s(:long) rescue '<em>not set</em>'.html_safe %>
+  <hr>
+  <h3>Questions:</h3>
+  <ul>
+    <% @election.questions.each do |question| %>
+      <li><%= question.title %></li>
+      <ul>
+        <% question.options.each do |option| %>
+          <li><%= option.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </ul>
+<% end %>

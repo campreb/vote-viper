@@ -23,3 +23,35 @@ $navbar-default-link-active-color: #fff;
 @import 'bootstrap';
 @import "font-awesome";
 
+div.page-header{
+  margin-top: 0;
+}
+
+.sidebar{
+  padding: 5px 0;
+  background-color: $breadcrumb-bg;
+  border-radius: 4px;
+  a{
+    color: darken($brand-primary, 10);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav .nav {
+    display: none;
+    a{
+      font-size: 0.8em;
+      padding:3px 15px 3px 30px ;
+    }
+  }
+  li.active {
+    > a{
+      font-weight: bold;
+      border-right: solid 1px darken($brand-primary, 10);
+    }
+    .nav{
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<%= election_sidebar do %>
+  <div class="page-header">
+    <ul class="list-unstyled pull-right">
+      <li><%= link_to fontawesome("plus-circle", "Add New Responder"), new_admin_election_responder_path(@election), class: "btn btn-primary" %></li>
+    </ul>
+    <h1><%= @election.title %> <small>Responders</small></h1>
+  </div>
+  <%= page_entries_info @responders, model: "responder".pluralize(@responders.length) %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @responders.each do |responder| %>
+        <tr>
+          <th><%= link_to responder.name, admin_election_responder_path(@election, responder) %></th>
+          <td><%= responder.email %></td>
+          <td class="text-right"><%= link_to fontawesome("pencil", "edit"), edit_admin_election_responder_path(@election, responder), class: "btn btn-default btn-xs" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @responders %>
+<% end %>

@@ -1,5 +1,6 @@
-<div class="page-header">
-  <h1>Edit <small><%= @election.title %></small></h1>
-</div>
-
-<%= render 'admin/elections/form' %>
+<%= election_sidebar do %>
+  <div class="page-header">
+    <h1><%= @election.title %> <small>Edit</small></h1>
+  </div>
+  <%= render 'admin/elections/form' %>
+<% end %>
