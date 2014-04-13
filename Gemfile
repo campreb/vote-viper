@@ -27,11 +27,14 @@ gem 'cancan'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 
-gem 'seed-fu', github: 'igas/seed-fu', branch: 'rails41'
+gem 'seed-fu', github: 'mbleigh/seed-fu'
 
 gem 'nested_form'
 
 gem 'chronic'
+
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development do
   gem 'spring'

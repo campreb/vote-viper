@@ -4,11 +4,4 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  private
-
-  def current_responder
-    session[:responder_key] ||= params[:key]
-    Responder.where(private_key: session[:responder_key]).first if session[:responder_key].present?
-  end
-
 end
