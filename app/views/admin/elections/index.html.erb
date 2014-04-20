@@ -7,22 +7,25 @@
   <h1>Elections</h1>
 </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number of responders</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @elections.each do |election| %>
-    <tr>
-      <td><%= link_to election.title, admin_election_path(election) %></td>
-      <td><%= election.responders.count %></td>
-      <td class='text-right'><%= link_to fontawesome('pencil',"edit"), edit_admin_election_path(election), class: "btn btn-xs btn-default" %></td>
-    </tr>
+
+<% @elections.in_groups_of(3, false) do |group| %>
+  <div class="row">
+    <% group.each do |election| %>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class='panel-title'><%= link_to election.title, admin_election_path(election) %></h4>
+          </div>
+          <div class="panel-body">
+            <p><em><%= election.description %></em></p>
+          </div>
+          <div class="panel-footer text-right">
+            <%= link_to fontawesome('pencil',"edit"), edit_admin_election_path(election), class: "btn btn-xs btn-default" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
+
 
