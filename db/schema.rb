@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412102246) do
+ActiveRecord::Schema.define(version: 20140718231340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "elections", force: true do |t|
+  create_table "campaigns", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "region_id"
@@ -40,24 +40,32 @@ ActiveRecord::Schema.define(version: 20140412102246) do
     t.string   "title"
     t.text     "description"
     t.integer  "sort_order"
-    t.integer  "election_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "campaign_id"
   end
-
-  add_index "questions", ["election_id"], name: "index_questions_on_election_id", using: :btree
 
   create_table "responders", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "private_key"
     t.string   "state"
-    t.integer  "election_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "campaign_id"
+  end
+
+  create_table "responses", force: true do |t|
+    t.integer  "responder_id"
+    t.integer  "question_id"
+    t.integer  "option_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "responders", ["election_id"], name: "index_responders_on_election_id", using: :btree
+  add_index "responses", ["option_id"], name: "index_responses_on_option_id", using: :btree
+  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
+  add_index "responses", ["responder_id"], name: "index_responses_on_responder_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -78,17 +86,5 @@ ActiveRecord::Schema.define(version: 20140412102246) do
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "votes", force: true do |t|
-    t.integer  "responder_id"
-    t.integer  "question_id"
-    t.integer  "option_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "votes", ["option_id"], name: "index_votes_on_option_id", using: :btree
-  add_index "votes", ["question_id"], name: "index_votes_on_question_id", using: :btree
-  add_index "votes", ["responder_id"], name: "index_votes_on_responder_id", using: :btree
 
 end
