@@ -41,6 +41,8 @@ group :development do
   gem 'better_errors'
   gem "binding_of_caller"
   gem 'guard-rspec', require: false
+  gem 'guard-livereload', require: false
+  gem "rack-livereload"
 end
 
 group :development, :test do
