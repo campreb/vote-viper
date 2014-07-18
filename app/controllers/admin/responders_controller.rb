@@ -35,6 +35,13 @@ class Admin::RespondersController < Admin::BaseController
     end
   end
 
+  def upload
+    current_campaign.responders.import!(responder_upload_params)
+    redirect_to [:admin, current_campaign, :responders], notice: 'Successfully imported responders'
+  rescue Responder::ImportError => e
+    redirect_to [:admin, current_campaign, :responders], alert: "Responders import failed: #{e.message}"
+  end
+
   private
 
   def current_responder
@@ -47,5 +54,9 @@ class Admin::RespondersController < Admin::BaseController
 
   def responder_params
     params.require(:responder).permit(:name, :email)
+  end
+
+  def responder_upload_paramms
+    params.require(:responders_import_file)
   end
 end

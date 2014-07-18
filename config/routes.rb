@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :campaigns do
-      resources :responders
+      resources :responders do
+        post :import, on: :collection
+      end
     end
   end
 
