@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  belongs_to :election
+  belongs_to :campaign
   has_many :options
   validates :title, presence: true
 

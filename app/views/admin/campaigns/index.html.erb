@@ -1,0 +1,31 @@
+<div class="page-header">
+  <ul class="list-inline pull-right">
+    <li>
+      <%= link_to fontawesome('plus-circle', "New Campaign"), new_admin_campaign_path, class: "btn btn-primary" %>
+    </li>
+  </ul>
+  <h1>Campaigns</h1>
+</div>
+
+
+<% @campaigns.in_groups_of(3, false) do |group| %>
+  <div class="row">
+    <% group.each do |campaign| %>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class='panel-title'><%= link_to campaign.title, admin_campaign_path(campaign) %></h4>
+          </div>
+          <div class="panel-body">
+            <p><em><%= campaign.description %></em></p>
+          </div>
+          <div class="panel-footer text-right">
+            <%= link_to fontawesome('pencil',"edit"), edit_admin_campaign_path(campaign), class: "btn btn-xs btn-default" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+

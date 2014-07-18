@@ -1,5 +1,5 @@
-Election.seed do |e|
+Campaign.seed do |e|
   e.id          = 1
-  e.title       = "Test Election"
-  e.description = "This is a demo election"
+  e.title       = "Test Campaign"
+  e.description = "This is a demo campaign"
 end

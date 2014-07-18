@@ -1,9 +1,9 @@
-<%= election_sidebar do %>
+<%= campaign_sidebar do %>
   <div class="page-header">
     <ul class="list-unstyled pull-right">
-      <li><%= link_to fontawesome("plus-circle", "Add New Responder"), new_admin_election_responder_path(@election), class: "btn btn-primary" %></li>
+      <li><%= link_to fontawesome("plus-circle", "Add New Responder"), new_admin_campaign_responder_path(@campaign), class: "btn btn-primary" %></li>
     </ul>
-    <h1><%= @election.title %> <small>Responders</small></h1>
+    <h1><%= @campaign.title %> <small>Responders</small></h1>
   </div>
   <%= page_entries_info @responders, model: "responder".pluralize(@responders.length) %>
   <table class='table'>
@@ -17,9 +17,9 @@
     <tbody>
       <% @responders.each do |responder| %>
         <tr>
-          <th><%= link_to responder.name, admin_election_responder_path(@election, responder) %></th>
+          <th><%= link_to responder.name, admin_campaign_responder_path(@campaign, responder) %></th>
           <td><%= responder.email %></td>
-          <td class="text-right"><%= link_to fontawesome("pencil", "edit"), edit_admin_election_responder_path(@election, responder), class: "btn btn-default btn-xs" %></td>
+          <td class="text-right"><%= link_to fontawesome("pencil", "edit"), edit_admin_campaign_responder_path(@campaign, responder), class: "btn btn-default btn-xs" %></td>
         </tr>
       <% end %>
     </tbody>

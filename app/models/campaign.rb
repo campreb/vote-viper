@@ -1,4 +1,4 @@
-class Election < ActiveRecord::Base
+class Campaign < ActiveRecord::Base
   has_many :questions
   has_many :responders
   validates :title, presence: true

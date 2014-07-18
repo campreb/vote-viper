@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Election do
+describe Campaign do
   it{ should validate_presence_of :title }
 end

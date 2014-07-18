@@ -1,0 +1,13 @@
+<div class="sidebar">
+  <ul class="nav">
+    <li class='active'>
+      <%= link_to @campaign.title, admin_campaign_path(@campaign) %>
+      <ul class="nav">
+        <li><%= link_to fontawesome("list-alt", "Details"), admin_campaign_path(@campaign) %></li>
+        <li><%= link_to fontawesome("pencil", "Edit"), edit_admin_campaign_path(@campaign) %></li>
+        <li><%= link_to fontawesome("group", "Responders"), admin_campaign_responders_path(@campaign) %></li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
