@@ -1,8 +1,8 @@
 class Admin::RespondersController < Admin::BaseController
-  before_filter :current_election
+  before_filter :current_campaign
 
   def index
-    @responders = current_election.responders.paginate(page: params[:page])
+    @responders = current_campaign.responders.paginate(page: params[:page])
   end
 
   def show
@@ -10,13 +10,13 @@ class Admin::RespondersController < Admin::BaseController
   end
 
   def new
-    @responder = current_election.responders.new
+    @responder = current_campaign.responders.new
   end
 
   def create
-    @responder = current_election.responders.new(responder_params)
+    @responder = current_campaign.responders.new(responder_params)
     if @responder.save
-      redirect_to [:admin, current_election, :responders], notice: "Successfully added responder"
+      redirect_to [:admin, current_campaign, :responders], notice: "Successfully added responder"
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::RespondersController < Admin::BaseController
   def update
     @responder = current_responder
     if @responder.update_attributes(responder_params)
-      redirect_to [:admin, current_election, @responder], notice: "Successfully updated responder"
+      redirect_to [:admin, current_campaign, @responder], notice: "Successfully updated responder"
     else
       render :edit
     end
@@ -38,11 +38,11 @@ class Admin::RespondersController < Admin::BaseController
   private
 
   def current_responder
-    current_election.responders.find(params[:id])
+    current_campaign.responders.find(params[:id])
   end
 
-  def current_election
-    @election ||= Election.find(params[:election_id])
+  def current_campaign
+    @campaign ||= Campaign.find(params[:campaign_id])
   end
 
   def responder_params

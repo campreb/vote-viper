@@ -1,11 +1,11 @@
 class Responder < ActiveRecord::Base
-  belongs_to :election
-  has_many :votes
+  belongs_to :campaign
+  has_many :responses
 
   validates :email, :name, presence: true
-  validates_uniqueness_of :email, scope: :election_id
+  validates_uniqueness_of :email, scope: :campaign_id
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
-  accepts_nested_attributes_for :votes
+  accepts_nested_attributes_for :responses
 
   before_create :populate_key
 

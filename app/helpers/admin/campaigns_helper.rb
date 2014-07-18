@@ -1,8 +1,8 @@
-module Admin::ElectionsHelper
-  def election_sidebar
+module Admin::CampaignsHelper
+  def campaign_sidebar
     content_tag :div, class: 'row' do
       content = content_tag( :div, class: "col-sm-2" )do
-        render 'admin/elections/sidebar'
+        render 'admin/campaigns/sidebar'
       end
       content << content_tag( :div, class: "col-sm-10" )do
         yield

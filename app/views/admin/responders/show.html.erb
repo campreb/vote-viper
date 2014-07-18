@@ -1,4 +1,4 @@
-<%= election_sidebar do %>
+<%= campaign_sidebar do %>
   <div class="page-header">
     <h1>Responder Details</h1>
   </div>
@@ -8,7 +8,7 @@
     <dt>Email:</dt>
     <dd><%= @responder.email %></dd>
     <dt>Ballot Link:</dt>
-    <dd><%= link_to election_url(key: @responder.private_key), election_path(key: @responder.private_key) %></dd>
+    <dd><%= link_to campaign_url(key: @responder.private_key), campaign_path(key: @responder.private_key) %></dd>
   </dl>
 
 <% end %>
