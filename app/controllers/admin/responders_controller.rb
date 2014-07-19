@@ -35,6 +35,13 @@ class Admin::RespondersController < Admin::BaseController
     end
   end
 
+  def import
+    Responder.import!(current_campaign, params[:responders_import_file])
+    redirect_to [:admin, current_campaign, :responders], notice: 'Successfully imported responders'
+  rescue Responder::ImportError => e
+    redirect_to [:admin, current_campaign, :responders], alert: "Responders import failed: #{e.message}"
+  end
+
   private
 
   def current_responder

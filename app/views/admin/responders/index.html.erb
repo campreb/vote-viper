@@ -1,6 +1,7 @@
 <%= campaign_sidebar do %>
   <div class="page-header">
-    <ul class="list-unstyled pull-right">
+    <ul class="list-inline pull-right">
+      <li><%= link_to "Bulk Add Responders", '#', id: 'trigger_bulk_add_responders', class: "btn btn-primary" %></li>
       <li><%= link_to fontawesome("plus-circle", "Add New Responder"), new_admin_campaign_responder_path(@campaign), class: "btn btn-primary" %></li>
     </ul>
     <h1><%= @campaign.title %> <small>Responders</small></h1>
@@ -25,4 +26,8 @@
     </tbody>
   </table>
   <%= will_paginate @responders %>
+<% end %>
+
+<%= form_tag import_admin_campaign_responders_path(@campaign), multipart: true, class: 'hide' do %>
+  <%= file_field_tag :responders_import_file %>
 <% end %>
