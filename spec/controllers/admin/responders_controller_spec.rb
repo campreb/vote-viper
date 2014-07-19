@@ -47,11 +47,11 @@ describe Admin::RespondersController do
   describe '#import' do
     let(:request) do
       import_file = fixture_file_upload('responders_import_file.csv', 'text/csv')
-      post :import, responders_import_file: import_file
       post :import, responders_import_file: import_file, campaign_id: campaign.id
     end
 
     it { expect(request).to redirect_to admin_campaign_responders_path(campaign) }
+    it { request; expect(flash[:notice]).to eq "Successfully imported responders" }
     it { expect { request }.to change(campaign.responders, :count).by(3) }
   end
 

@@ -27,3 +27,7 @@
   </table>
   <%= will_paginate @responders %>
 <% end %>
+
+<%= form_tag import_admin_campaign_responders_path(@campaign), multipart: true, class: 'hide' do %>
+  <%= file_field_tag :responders_import_file %>
+<% end %>
