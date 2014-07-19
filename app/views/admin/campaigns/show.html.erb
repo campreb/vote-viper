@@ -1,6 +1,12 @@
 <%= campaign_sidebar do %>
   <div class="page-header">
     <ul class="list-inline pull-right">
+      <li>
+        <%= link_to fontawesome('envelope', "Notify Responders"),
+              notify_responders_admin_campaign_path(@campaign),
+              method: :post, class: 'btn btn-primary',
+              data:{confirm: "Are you sure you want to send notifications?"} %>
+      </li>
       <li><%= link_to fontawesome('pencil',"Edit"), edit_admin_campaign_path(@campaign), class: 'btn btn-default' %></li>
     </ul>
     <h1><%= @campaign.title %></h1>

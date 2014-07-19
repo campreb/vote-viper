@@ -42,4 +42,10 @@ describe Admin::CampaignsController do
     it{ expect{request}.to change{campaign.reload.attributes} }
   end
 
+  describe '#notify_responders' do
+    let!(:responders){ FactoryGirl.create_list(:responder, 5, campaign: campaign ) }
+    let(:request){ post :notify_responders, id: campaign.id }
+    it{ expect(request).to redirect_to admin_campaign_path(campaign) }
+    it{ expect{request}.to change(ActionMailer::Base.deliveries, :length).by(5) }
+  end
 end
