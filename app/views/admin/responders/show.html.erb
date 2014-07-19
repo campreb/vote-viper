@@ -1,5 +1,12 @@
 <%= campaign_sidebar do %>
   <div class="page-header">
+    <ul class="list-inline pull-right">
+      <li><%= link_to 'Send Notification Email',
+              send_notification_admin_campaign_responder_path(@campaign, @responder),
+              method: :post, class: 'btn btn-primary',
+              data:{confirm: "Are you sure you want to notify them?"} %>
+      </li>
+    </ul>
     <h1>Responder Details</h1>
   </div>
   <dl class="dl-horizontal">

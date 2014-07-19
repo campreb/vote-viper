@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718231340) do
+ActiveRecord::Schema.define(version: 20140719022017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 20140718231340) do
     t.datetime "closes_at"
     t.string   "state"
   end
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "options", force: true do |t|
     t.string   "name"
@@ -86,5 +102,15 @@ ActiveRecord::Schema.define(version: 20140718231340) do
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vs_database_diagrams", id: false, force: true do |t|
+    t.string   "name",     limit: 80
+    t.text     "diadata"
+    t.string   "comment",  limit: 1022
+    t.text     "preview"
+    t.string   "lockinfo", limit: 80
+    t.datetime "locktime"
+    t.string   "version",  limit: 80
+  end
 
 end

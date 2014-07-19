@@ -33,6 +33,10 @@ class Admin::CampaignsController < Admin::BaseController
     end
   end
 
+  def notify_responders
+    send_notifications_to_responders!
+    redirect_to admin_campaign_path(current_campaign), notice: 'Notifications have been sent.'
+  end
 
   private
 
@@ -47,6 +51,12 @@ class Admin::CampaignsController < Admin::BaseController
         :id, :title, :description, :sort_order, :_destroy,
         options_attributes:[:id, :name, :_destroy]
       ])
+  end
+
+  def send_notifications_to_responders!
+    current_campaign.responders.each do |responder|
+      ResponderMailer.delay.campaign_notification(responder)
+    end
   end
 
 end

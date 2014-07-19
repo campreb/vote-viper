@@ -55,6 +55,16 @@ describe Admin::RespondersController do
     it { expect { request }.to change(campaign.responders, :count).by(3) }
   end
 
+  describe '#send_notification' do
+    before { Delayed::Worker.delay_jobs = false }
+
+    let(:request){ post :send_notification, campaign_id: campaign.id, id: responder.id }
+
+    it{ expect(request).to redirect_to admin_campaign_responder_path(campaign, responder) }
+    it{ expect{request}.to change(ActionMailer::Base.deliveries, :length).by(1) }
+    it{ request; expect(ActionMailer::Base.deliveries.last.to).to include(responder.email) }
+  end
+
   describe '#update' do
     before{ patch :update, campaign_id: campaign.id, id: responder.id, responder: responder_attrs }
     it{ expect(request).to redirect_to admin_campaign_responder_path(campaign, responder)}
