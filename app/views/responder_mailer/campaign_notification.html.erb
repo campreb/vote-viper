@@ -1,0 +1,6 @@
+<p>Hi <%= @responder.name %></p>
+<p>You've been invited to participate in the <%= @campaign.title %></p>
+<p>
+  <%= link_to "Click Here", campaign_url(key: @responder.private_key) %> to
+  submit complete this.
+</p>

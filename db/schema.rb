@@ -87,4 +87,14 @@ ActiveRecord::Schema.define(version: 20140718231340) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "vs_database_diagrams", id: false, force: true do |t|
+    t.string   "name",     limit: 80
+    t.text     "diadata"
+    t.string   "comment",  limit: 1022
+    t.text     "preview"
+    t.string   "lockinfo", limit: 80
+    t.datetime "locktime"
+    t.string   "version",  limit: 80
+  end
+
 end
