@@ -15,7 +15,7 @@ class Responder < ActiveRecord::Base
 
   def self.import!(campaign, import_csv_file)
     transaction do
-      CSV.foreach(import_csv_file, headers: true) do |row|
+      CSV.foreach(import_csv_file.try(:path), headers: true) do |row|
         campaign.responders.create!(email: row[1], name: row[0])
       end
     end
