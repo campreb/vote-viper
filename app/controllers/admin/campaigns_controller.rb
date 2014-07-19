@@ -55,7 +55,7 @@ class Admin::CampaignsController < Admin::BaseController
 
   def send_notifications_to_responders!
     current_campaign.responders.each do |responder|
-      ResponderMailer.campaign_notification(responder).deliver
+      ResponderMailer.delay.campaign_notification(responder)
     end
   end
 

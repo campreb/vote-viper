@@ -43,7 +43,7 @@ class Admin::RespondersController < Admin::BaseController
   end
 
   def send_notification
-    ResponderMailer.campaign_notification(current_responder).deliver
+    ResponderMailer.delay.campaign_notification(current_responder)
     redirect_to [:admin, current_campaign, current_responder], notice: "Notification Successfully Sent!"
   end
 

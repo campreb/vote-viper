@@ -43,6 +43,7 @@ describe Admin::CampaignsController do
   end
 
   describe '#notify_responders' do
+    before { Delayed::Worker.delay_jobs = false }
     let!(:responders){ FactoryGirl.create_list(:responder, 5, campaign: campaign ) }
     let(:request){ post :notify_responders, id: campaign.id }
     it{ expect(request).to redirect_to admin_campaign_path(campaign) }

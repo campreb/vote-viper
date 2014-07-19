@@ -56,6 +56,8 @@ describe Admin::RespondersController do
   end
 
   describe '#send_notification' do
+    before { Delayed::Worker.delay_jobs = false }
+
     let(:request){ post :send_notification, campaign_id: campaign.id, id: responder.id }
 
     it{ expect(request).to redirect_to admin_campaign_responder_path(campaign, responder) }
