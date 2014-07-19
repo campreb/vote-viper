@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   root to: "admin/campaigns#index"
 
-  get "campaign" => "campaigns#show"
+  scope 'campaign' do
+    get "/" => "campaigns#show", as: :campaign
+    post "/" => 'campaigns#submit', as: :campaign_submit
+  end
+
 
   devise_for :users
 end

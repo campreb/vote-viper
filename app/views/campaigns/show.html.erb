@@ -14,7 +14,7 @@
 
 
 <hr>
-<%= form_for @responder, url: "#" do |f| %>
+<%= form_for @responder, url: campaign_submit_path, method: :post do |f| %>
   <% @campaign.questions.order(:sort_order).each_with_index do |question| %>
     <div class="form-group">
       <h4><%= question.title %></h4>
@@ -34,6 +34,6 @@
     <hr>
   <% end %>
   <div class="form-group">
-    <%= f.submit "Cast Responses", class: "btn btn-primary", data:{disable_with: "Loading..."} %>
+    <%= f.submit "Submit", class: "btn btn-primary", data:{disable_with: "Loading..."} %>
   </div>
 <% end %>
